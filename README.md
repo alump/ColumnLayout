@@ -11,7 +11,7 @@ Try the add-on demo at http://app.siika.fi/ColumnLayout
 
 ## Download release
 
-Official releases of this add-on are available at Vaadin Directory. For Maven instructions, download and reviews, go to http://vaadin.com/addon/columnlayout
+Official releases of this add-on are available at Vaadin Directory. For Maven instructions, download and reviews, go to https://vaadin.com/directory#addon/columnlayout
 
 ## Building and running demo
 
