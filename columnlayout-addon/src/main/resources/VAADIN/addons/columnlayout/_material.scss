@@ -1,0 +1,117 @@
+@mixin columnlayout-material {
+
+  /* Color of text used to override Valo coloring in some parts */
+  $v-font-color: #222 !default;
+  $material-font-color: $v-font-color !default;
+
+  /* Color of error line and shadow in material style */
+  $v-error-indicator-color: #ed473b !default;
+  $material-error-color: $v-error-indicator-color !default;
+
+  /* Color used when in focus */
+  $v-focus-color: #33F !default;
+  $material-focus-color: $v-focus-color !default;
+
+  /* Color of border under line in material style */
+  $material-field-border-color: gray !default;
+
+  /* Padding needed to align some moved components */
+  $material-field-padding: 9px !default;
+
+  /* Width of underlines of fields */
+  $material-line-width: 1px !default;
+  $material-readonly-line-width: $material-line-width !default;
+
+  &.material {
+    .v-textfield {
+      background: none;
+      border-width: 0px 0px $material-line-width 0px;
+      border-radius: 0px;
+
+      &:focus {
+        box-shadow: none;
+      }
+
+      &.v-readonly {
+        border-width: 0px 0px $material-readonly-line-width 0px;
+      }
+    }
+
+    .v-datefield {
+      .v-datefield-button {
+        border-width: 0px;
+        right: 0px;
+        left: auto;
+      }
+      .v-textfield {
+        padding-left: $material-field-padding;
+        padding-right: 44px;
+      }
+    }
+
+    .v-filterselect {
+      .v-filterselect-input {
+        border-width: 0px 0px 1px 0px;
+        border-radius: 0px;
+        background: transparent;
+        box-shadow: none;
+
+        &:focus {
+          box-shadow: none;
+        }
+
+        &.v-readonly {
+          border-width: 0px 0px $material-readonly-line-width 0px;
+        }
+      }
+      .v-filterselect-button {
+        border-width: 0px;
+      }
+    }
+
+    .v-textarea {
+      border-width: 0px 0px 1px 0px;
+      border-radius: 0px;
+      background: transparent;
+
+      &:focus {
+        box-shadow: none;
+      }
+
+      &.v-readonly {
+        border-width: 0px 0px $material-readonly-line-width 0px;
+      }
+    }
+
+    .v-checkbox {
+      input:focus ~ label:before {
+        box-shadow: none;
+      }
+    }
+
+    > .column-panel-content {
+      .column-slot {
+        > .v-caption.v-required:after {
+          color: $material-font-color;
+        }
+      }
+    }
+
+    .loading-field {
+      opacity: 0.5;
+      pointer-events: none;
+      position: relative;
+
+      &:before {
+        display: block;
+        position: absolute;
+        content: "";
+        left: 50%;
+        top: 50%;
+        margin-top: -12px;
+        margin-left: -12px;
+        @include valo-spinner($size: 24px);
+      }
+    }
+  }
+}

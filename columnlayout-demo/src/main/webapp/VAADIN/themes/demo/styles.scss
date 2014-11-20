@@ -1,0 +1,38 @@
+@import "../valo/valo.scss";
+@import "addons.scss";
+
+$gray: #d1d1cf;
+$green: #40b527;
+$darkgreen: darken($green, 30%);
+
+// Prefix all selectors in your theme with .demo
+.demo {
+
+	// Include valo theme styles in your theme
+	@include valo;
+
+    // Next include addons
+    @include addons;
+
+    .menubar {
+        padding: 10px 10px 10px 10px;
+    }
+
+    .outlined {
+      outline-width: 1px;
+      outline-color: rgba(0,50%,0,0.25);
+      outline-style: dotted;
+
+      .column {
+        outline-width: 1px;
+        outline-color: rgba(0,0,50%,0.25);
+        outline-style: dotted;
+
+        .column-slot {
+          outline-width: 1px;
+          outline-color: rgba(50%,0,0,0.25);
+          outline-style: dotted;
+        }
+      }
+    }
+}
