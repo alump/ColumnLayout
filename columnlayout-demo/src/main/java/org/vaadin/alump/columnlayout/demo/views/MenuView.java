@@ -1,8 +1,7 @@
 package org.vaadin.alump.columnlayout.demo.views;
 
-import com.vaadin.ui.Button;
-import com.vaadin.ui.Panel;
-import com.vaadin.ui.VerticalLayout;
+import com.vaadin.server.ExternalResource;
+import com.vaadin.ui.*;
 import org.vaadin.alump.columnlayout.demo.DemoUI;
 
 /**
@@ -22,6 +21,14 @@ public class MenuView extends AbstractView {
         panelLayout.setSpacing(true);
         panelLayout.setWidth("100%");
         panel.setContent(panelLayout);
+
+        Label info = new Label("ColumnLayout is an UI component add-on for Vaadin 7.3+ and Valo based themes. It " +
+                "provides alternative for Horizontal+VerticalLayout and GridLayout usage when building columned " +
+                "layouts.");
+        panelLayout.addComponent(info);
+
+        Link github = new Link("Project in GitHub", new ExternalResource("https://github.com/alump/ColumnLayout"));
+        panelLayout.addComponent(github);
 
         panelLayout.addComponent(new Button(DemoUI.getViewDescription(BasicView.class), e -> navigateTo(BasicView.class)));
         panelLayout.addComponent(new Button(DemoUI.getViewDescription(MaterialView.class), e ->  navigateTo(MaterialView.class)));

@@ -20,7 +20,7 @@
 
   /* Width of underlines of fields */
   $material-line-width: 1px !default;
-  $material-readonly-line-width: $material-line-width !default;
+  $material-readonly-line-width: 0px !default;
 
   &.material {
     .v-textfield {
@@ -59,13 +59,14 @@
         &:focus {
           box-shadow: none;
         }
-
-        &.v-readonly {
-          border-width: 0px 0px $material-readonly-line-width 0px;
-        }
       }
       .v-filterselect-button {
         border-width: 0px;
+      }
+      &.v-readonly {
+        .v-filterselect-input {
+          border-width: 0px 0px $material-readonly-line-width 0px;
+        }
       }
     }
 

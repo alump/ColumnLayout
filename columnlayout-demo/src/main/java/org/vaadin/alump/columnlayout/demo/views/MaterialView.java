@@ -1,5 +1,6 @@
 package org.vaadin.alump.columnlayout.demo.views;
 
+import com.vaadin.data.Property;
 import com.vaadin.data.Validator;
 import com.vaadin.data.validator.EmailValidator;
 import com.vaadin.ui.*;
@@ -8,6 +9,8 @@ import org.vaadin.alump.columnlayout.material.MaterialColumnLayout;
 import org.vaadin.alump.columnlayout.notooltip.*;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * View testing MaterialColumnLayout
@@ -21,6 +24,8 @@ public class MaterialView extends CLView {
     private TextField unit;
     private ComboBox loading;
 
+    private final Set<Component> fields = new HashSet<>();
+
     @Override
     protected ColumnLayout createLayout() {
         MaterialColumnLayout  columnLayout = new MaterialColumnLayout();
@@ -29,6 +34,7 @@ public class MaterialView extends CLView {
         columnLayout.setMargin(true);
 
         TextField textField = new NoTooltipTextField();
+        fields.add(textField);
         textField.setWidth("100%");
         textField.setImmediate(true);
         textField.setCaption("Email");
@@ -38,6 +44,7 @@ public class MaterialView extends CLView {
         columnLayout.addComponent(textField);
 
         final ComboBox cbox = new NoTooltipComboBox();
+        fields.add(cbox);
         cbox.setWidth("100%");
         cbox.setImmediate(true);
         cbox.setCaption("Select any");
@@ -47,6 +54,7 @@ public class MaterialView extends CLView {
         columnLayout.addComponent(cbox, 1);
 
         final ComboBox cbox2 = new NoTooltipComboBox();
+        fields.add(cbox2);
         cbox2.setWidth("100%");
         cbox2.setImmediate(true);
         cbox2.setCaption("Select foo");
@@ -68,6 +76,7 @@ public class MaterialView extends CLView {
         columnLayout.addComponent(cbox2, 1);
 
         DateField dateField = new NoTooltipDateField();
+        fields.add(dateField);
         dateField.setWidth("100%");
         dateField.setImmediate(true);
         dateField.setValue(new Date());
@@ -84,6 +93,7 @@ public class MaterialView extends CLView {
         columnLayout.addComponent(dateField, 0);
 
         TextArea textArea = new NoTooltipTextArea();
+        fields.add(textArea);
         textArea.setWidth("100%");
         textArea.setRows(6);
         textArea.setCaption("Your life story");
@@ -91,11 +101,13 @@ public class MaterialView extends CLView {
         columnLayout.addComponent(textArea, 2);
 
         CheckBox checkBox = new NoTooltipCheckBox();
+        fields.add(checkBox);
         checkBox.setCaption("I'm checkbox, hello!");
         checkBox.setDescription("Also checkbox can have description");
         columnLayout.addComponent(checkBox, 0);
 
         unit = new NoTooltipTextField();
+        fields.add(unit);
         unit.setWidth("100%");
         columnLayout.addComponent(unit, 1);
         unit.setCaption("Unit test");
@@ -108,6 +120,7 @@ public class MaterialView extends CLView {
                 unit.setDescription("This should have units");
                 if(swapComponent != null) {
                     getLayout().replaceComponent(swapComponent, createSwapCombobox());
+                    fields.add(swapComponent);
                     swapComponent = null;
                 }
                 loading.removeStyleName(MaterialColumnLayout.LOADING_FIELD_STYLE_NAME);
@@ -116,15 +129,18 @@ public class MaterialView extends CLView {
                 loading.setDescription("");
             }
         });
+        fields.add(submit);
         columnLayout.addComponent(submit, 2);
 
         ProgressBar spinner = new ProgressBar();
+        fields.add(spinner);
         swapComponent = spinner;
         spinner.setDescription("Loading meaning of life");
         spinner.setIndeterminate(true);
         columnLayout.addComponent(spinner, 2);
 
         loading = new NoTooltipComboBox();
+        fields.add(loading);
         loading.setCaption("Loading state with CSS");
         loading.addStyleName(MaterialColumnLayout.LOADING_FIELD_STYLE_NAME);
         loading.setDescription("Loading data...");
@@ -139,8 +155,9 @@ public class MaterialView extends CLView {
         return columnLayout;
     }
 
-    private static ComboBox createSwapCombobox() {
+    private ComboBox createSwapCombobox() {
         final ComboBox cbox = new NoTooltipComboBox();
+        fields.add(cbox);
         cbox.setWidth("100%");
         cbox.setImmediate(true);
         cbox.setCaption("Swapped combobox");
@@ -156,7 +173,13 @@ public class MaterialView extends CLView {
 
     @Override
     protected void createMenuBar(HorizontalLayout menuBar) {
+        CheckBox readOnly = new CheckBox("ro");
+        readOnly.setDescription("Make form readonly");
+        readOnly.addValueChangeListener(e -> fields.forEach(f -> f.setReadOnly((Boolean)e.getProperty().getValue())));
+        menuBar.addComponent(readOnly);
+
         menuBar.addComponent(
                 new Label("Material design look'n feel example modification of ColumnLayout (provided by add-on)"));
+
     }
 }

@@ -3,3 +3,6 @@
 *.iml
 columnlayout-addon/target/
 columnlayout-demo/target/
+columnlayout-demo/src/main/webapp/VAADIN/themes/demo/addons.scss
+columnlayout-demo/src/main/webapp/VAADIN/themes/demo/styles.css
+columnlayout-demo/src/main/webapp/VAADIN/widgetsets/

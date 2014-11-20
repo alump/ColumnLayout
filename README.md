@@ -7,7 +7,7 @@ Horizontal+VerticalLayout and GridLayout usage when building columned layouts.
 
 ## Online demo
 
-Try the add-on demo at http://apps.siika.fi/ColumnLayout
+Try the add-on demo at http://app.siika.fi/ColumnLayout
 
 ## Download release
 
