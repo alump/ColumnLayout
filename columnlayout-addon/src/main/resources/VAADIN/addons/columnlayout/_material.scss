@@ -27,6 +27,7 @@
       background: none;
       border-width: 0px 0px $material-line-width 0px;
       border-radius: 0px;
+      box-shadow: none;
 
       &:focus {
         box-shadow: none;
@@ -74,6 +75,7 @@
       border-width: 0px 0px 1px 0px;
       border-radius: 0px;
       background: transparent;
+      box-shadow: none;
 
       &:focus {
         box-shadow: none;
