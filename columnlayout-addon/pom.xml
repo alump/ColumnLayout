@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.vaadin.alump.columnlayout</groupId>
 	<artifactId>columnlayout-addon</artifactId>
@@ -28,7 +28,7 @@
 		<name>Sami Viitanen</name>
 		<url>https://github.com/alump</url>
 	</organization>
-    
+
 	<scm>
 		<url>git://github.com/alump/ColumnLayout.git</url>
 		<connection>scm:git:git://github.com/alump/ColumnLayout.git</connection>
@@ -91,7 +91,7 @@
 			<version>${vaadin.version}</version>
 			<scope>provided</scope>
 		</dependency>
-		
+
 		<!-- This can be replaced with TestNG or some other test framework supported by the surefire plugin -->
 		<dependency>
 			<groupId>junit</groupId>
@@ -135,7 +135,7 @@
 					</archive>
 				</configuration>
 			</plugin>
-			
+
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-javadoc-plugin</artifactId>
@@ -168,6 +168,17 @@
 				<groupId>org.apache.felix</groupId>
 				<artifactId>maven-bundle-plugin</artifactId>
 				<extensions>true</extensions>
+				<configuration>
+					<instructions>
+						<Export-Package>org.vaadin.alump.columnlayout,org.vaadin.alump.columnlayout.material,
+							org.vaadin.alump.columnlayout.notooltip</Export-Package>
+						<Private-Package>org.vaadin.alump.columnlayout.client</Private-Package>
+						<Import-Package>com.vaadin.data;version="[7.3,8)",com.vaa
+							din.shared;version="[7.3,8)",com.vaadin.shared.communication;version="[
+							7.3,8)",com.vaadin.shared.ui;version="[7.3,8)",com.vaadin.ui;version="[
+							7.3,8)"</Import-Package>
+					</instructions>
+				</configuration>
 				<executions>
 					<execution>
 						<id>bundle-manifest</id>
@@ -213,14 +224,14 @@
 			<resource>
 				<directory>src/main/java</directory>
 				<excludes>
-                    <exclude>rebel.xml</exclude>
-                </excludes>
+					<exclude>rebel.xml</exclude>
+				</excludes>
 			</resource>
 			<resource>
 				<directory>src/main/resources</directory>
 			</resource>
 		</resources>
-		
+
 	</build>
 
 </project>
