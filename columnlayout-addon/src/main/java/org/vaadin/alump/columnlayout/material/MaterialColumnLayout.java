@@ -3,7 +3,7 @@ package org.vaadin.alump.columnlayout.material;
 import com.vaadin.shared.Connector;
 import com.vaadin.ui.Component;
 import org.vaadin.alump.columnlayout.ColumnLayout;
-import org.vaadin.alump.columnlayout.client.material.MaterialColumnLayoutState;
+import org.vaadin.alump.columnlayout.client.share.MaterialColumnLayoutState;
 
 import java.util.ArrayList;
 import java.util.List;

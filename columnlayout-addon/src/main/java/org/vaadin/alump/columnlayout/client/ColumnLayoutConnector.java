@@ -9,6 +9,7 @@ import com.vaadin.client.ui.AbstractLayoutConnector;
 import com.vaadin.shared.Connector;
 import com.vaadin.shared.ui.Connect;
 import org.vaadin.alump.columnlayout.ColumnLayout;
+import org.vaadin.alump.columnlayout.client.share.ColumnLayoutState;
 
 import java.util.logging.Logger;
 

@@ -171,8 +171,7 @@
 				<configuration>
 					<instructions>
 						<Export-Package>org.vaadin.alump.columnlayout,org.vaadin.alump.columnlayout.material,
-							org.vaadin.alump.columnlayout.notooltip</Export-Package>
-						<Private-Package>org.vaadin.alump.columnlayout.client</Private-Package>
+							org.vaadin.alump.columnlayout.notooltip,org.vaadin.alump.columnlayout.client.share</Export-Package>
 						<Import-Package>com.vaadin.data;version="[7.3,8)",com.vaa
 							din.shared;version="[7.3,8)",com.vaadin.shared.communication;version="[
 							7.3,8)",com.vaadin.shared.ui;version="[7.3,8)",com.vaadin.ui;version="[

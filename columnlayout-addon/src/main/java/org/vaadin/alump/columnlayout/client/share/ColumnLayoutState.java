@@ -1,4 +1,4 @@
-package org.vaadin.alump.columnlayout.client;
+package org.vaadin.alump.columnlayout.client.share;
 
 import com.vaadin.shared.Connector;
 import com.vaadin.shared.ui.AbstractLayoutState;

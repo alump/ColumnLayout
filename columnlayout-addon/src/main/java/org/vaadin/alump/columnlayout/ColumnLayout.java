@@ -5,7 +5,7 @@ import com.vaadin.shared.ui.MarginInfo;
 import com.vaadin.ui.AbstractLayout;
 import com.vaadin.ui.Component;
 import com.vaadin.ui.Layout;
-import org.vaadin.alump.columnlayout.client.ColumnLayoutState;
+import org.vaadin.alump.columnlayout.client.share.ColumnLayoutState;
 
 import java.util.ArrayList;
 import java.util.Iterator;

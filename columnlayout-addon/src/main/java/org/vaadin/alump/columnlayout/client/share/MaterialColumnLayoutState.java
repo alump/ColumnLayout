@@ -1,7 +1,7 @@
-package org.vaadin.alump.columnlayout.client.material;
+package org.vaadin.alump.columnlayout.client.share;
 
 import com.vaadin.shared.Connector;
-import org.vaadin.alump.columnlayout.client.ColumnLayoutState;
+import org.vaadin.alump.columnlayout.client.share.ColumnLayoutState;
 
 import java.util.HashMap;
 import java.util.Map;

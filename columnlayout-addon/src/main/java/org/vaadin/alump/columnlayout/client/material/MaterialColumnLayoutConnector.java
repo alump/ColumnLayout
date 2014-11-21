@@ -1,16 +1,11 @@
 package org.vaadin.alump.columnlayout.client.material;
 
-import com.google.gwt.dom.client.Document;
-import com.google.gwt.dom.client.Element;
-import com.google.gwt.dom.client.Style;
-import com.google.gwt.user.client.ui.Widget;
 import com.vaadin.client.ComponentConnector;
 import com.vaadin.client.ConnectorHierarchyChangeEvent;
 import com.vaadin.client.communication.StateChangeEvent;
 import com.vaadin.shared.ui.Connect;
 import org.vaadin.alump.columnlayout.client.ColumnLayoutConnector;
-import org.vaadin.alump.columnlayout.client.ColumnPanel;
-import org.vaadin.alump.columnlayout.client.ColumnSlot;
+import org.vaadin.alump.columnlayout.client.share.MaterialColumnLayoutState;
 
 /**
  * Material design extensions to ColumnLayout on client side
