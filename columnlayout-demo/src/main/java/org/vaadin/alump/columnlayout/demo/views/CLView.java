@@ -18,6 +18,11 @@ public abstract class CLView extends AbstractView {
 
     @Override
     protected void construct() {
+        constructMenuBar();
+        constructViewPanel();
+    }
+
+    protected void constructMenuBar() {
         menuBar = new HorizontalLayout();
         menuBar.addStyleName("menubar");
         menuBar.setSpacing(true);
@@ -25,7 +30,9 @@ public abstract class CLView extends AbstractView {
         addComponent(menuBar);
         menuBar.addComponent(new SmallButton("≡", e -> navigateTo(MenuView.class)));
         createMenuBar(menuBar);
+    }
 
+    protected void constructViewPanel() {
         Panel viewPanel = new Panel();
         viewPanel.setSizeFull();
         addComponent(viewPanel);

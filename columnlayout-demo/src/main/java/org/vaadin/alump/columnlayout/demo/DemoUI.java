@@ -39,6 +39,7 @@ public class DemoUI extends UI {
         addViewToNavigator(navigator, MenuView.class);
         addViewToNavigator(navigator, BasicView.class);
         addViewToNavigator(navigator, MaterialView.class);
+        addViewToNavigator(navigator, Issue1View.class);
     }
 
     protected static void addViewToNavigator(Navigator navigator, Class<? extends View> viewClass) {

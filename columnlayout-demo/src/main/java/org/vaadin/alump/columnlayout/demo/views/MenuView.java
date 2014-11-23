@@ -8,6 +8,7 @@ import org.vaadin.alump.columnlayout.demo.DemoUI;
  * Created by alump on 20/11/14.
  */
 @ViewIdentifier("")
+@ViewDescription("Main menu of ColumnLayout demo")
 public class MenuView extends AbstractView {
 
     @Override
@@ -32,6 +33,13 @@ public class MenuView extends AbstractView {
 
         panelLayout.addComponent(new Button(DemoUI.getViewDescription(BasicView.class), e -> navigateTo(BasicView.class)));
         panelLayout.addComponent(new Button(DemoUI.getViewDescription(MaterialView.class), e ->  navigateTo(MaterialView.class)));
+
+        HorizontalLayout issues = new HorizontalLayout();
+        issues.setCaption("Test cases for issues reported");
+        issues.setSpacing(true);
+        panelLayout.addComponent(issues);
+
+        issues.addComponent(new Button("#1", e -> navigateTo(Issue1View.class)));
     }
 
 
