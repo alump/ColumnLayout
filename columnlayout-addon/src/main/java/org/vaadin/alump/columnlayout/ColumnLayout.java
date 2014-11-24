@@ -2,9 +2,7 @@ package org.vaadin.alump.columnlayout;
 
 import com.vaadin.shared.Connector;
 import com.vaadin.shared.ui.MarginInfo;
-import com.vaadin.ui.AbstractLayout;
-import com.vaadin.ui.Component;
-import com.vaadin.ui.Layout;
+import com.vaadin.ui.*;
 import org.vaadin.alump.columnlayout.client.share.ColumnLayoutState;
 
 import java.util.ArrayList;
@@ -15,7 +13,11 @@ import java.util.List;
  * Column based layout. Client side will try to show content in columns defined. If it runs out of screen space it will
  * wrap columns to next "row".
  */
+@SuppressWarnings("serial")
 public class ColumnLayout extends AbstractLayout implements Layout.SpacingHandler, Layout.MarginHandler {
+
+    private final Class<? extends AbstractComponent> DEFAULT_PLACEHOLDER_CLASS = SlotPlaceholder.class;
+    private Class<? extends AbstractComponent> placeholderClass = DEFAULT_PLACEHOLDER_CLASS;
 
     @Override
     protected ColumnLayoutState getState() {
@@ -51,6 +53,20 @@ public class ColumnLayout extends AbstractLayout implements Layout.SpacingHandle
     }
 
     /**
+     * Set component to given column with given slot index.
+     * @param component Component set to given index
+     * @param columnIndex Column index. Needed columns will be created automatically
+     * @param slotIndex Slot index. If column does not have enough components, placeholder will be used to fill earlier
+     *                  slots. If slot already has a component, it will be replaced.
+     */
+    public void setComponent(Component component, int columnIndex, int slotIndex) {
+        if(slotIndex < 0) {
+            throw new IllegalArgumentException("Invalid slot index: " + slotIndex);
+        }
+        setComponent(component, getColumn(columnIndex), slotIndex);
+    }
+
+    /**
      * Add component
      * @param component Component added
      * @param column Column where component is added
@@ -64,6 +80,70 @@ public class ColumnLayout extends AbstractLayout implements Layout.SpacingHandle
         } else {
             column.children.add(slotIndex, component);
         }
+    }
+
+    /**
+     * Set component
+     * @param component Component set to given index
+     * @param column Column index
+     * @param slotIndex Slot index
+     */
+    protected void setComponent(Component component, ColumnLayoutState.ColumnState column, int slotIndex) {
+
+        // Replace component if already defined
+        if(slotIndex < column.children.size()) {
+            replaceComponent((Component) column.children.get(slotIndex), component);
+
+        // Add component if not defined yet
+        } else {
+            // Add placeholders if needed
+            while (slotIndex > column.children.size()) {
+                addComponent(createPlaceholder(
+                        getState().columns.indexOf(column), column.children.size()), column, -1);
+            }
+
+            addComponent(component, column, slotIndex);
+        }
+    }
+
+    /**
+     * Method used to create cell placeholder. To be overridden if simple reflections with default constructors are not
+     * enough.
+     * @param column Column index
+     * @param cell Cell index
+     * @return New instance of placeholder
+     */
+    protected Component createPlaceholder(int column, int cell) {
+        Component placeHolder;
+        try {
+            placeHolder = placeholderClass.newInstance();
+        } catch (Exception e) {
+            throw new IllegalStateException("Failed to initialize placeholder class instance", e);
+        }
+        placeHolder.addStyleName("placeholder");
+        placeHolder.addStyleName("placeholder-" + column + "-" + cell);
+        return placeHolder;
+    }
+
+    /**
+     * Define placeholder component class used to fill empty cells.
+     * @param klass Component class used to fill empty cells. Most have default constructor. If null given default
+     *              placeholder class will be used.
+     */
+    public void setPlaceholderClass(Class<? extends AbstractComponent> klass) {
+        if(klass != null) {
+            placeholderClass = klass;
+        } else {
+            placeholderClass = DEFAULT_PLACEHOLDER_CLASS;
+        }
+    }
+
+    /**
+     * Get placeholder Component class used to fill empty cells
+     * @return Placeholder Component class
+     */
+    public Class<? extends AbstractComponent> getPlaceholderClass() {
+        return placeholderClass;
     }
 
     @Override
@@ -105,6 +185,10 @@ public class ColumnLayout extends AbstractLayout implements Layout.SpacingHandle
      * @return Column at given index
      */
     protected ColumnLayoutState.ColumnState getColumn(int index) {
+        if(index < 0) {
+            throw new IllegalArgumentException("Invalid column index: " + index);
+        }
+
         while(getState().columns.size() <= index) {
             getState().columns.add(new ColumnLayoutState.ColumnState());
         }
@@ -114,6 +198,11 @@ public class ColumnLayout extends AbstractLayout implements Layout.SpacingHandle
 
     @Override
     public void replaceComponent(Component oldComponent, Component newComponent) {
+
+        // Ignore if component is replaced with itself
+        if(oldComponent == newComponent) {
+            return;
+        }
 
         // Remove new component from children to allow position calculations
         if(newComponent.getParent() == this) {
@@ -214,4 +303,5 @@ public class ColumnLayout extends AbstractLayout implements Layout.SpacingHandle
     public int getColumnWidth() {
         return getState().columnWidth;
     }
+
 }

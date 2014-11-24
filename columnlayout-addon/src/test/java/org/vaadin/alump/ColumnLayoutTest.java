@@ -65,4 +65,73 @@ public class ColumnLayoutTest {
         Assert.assertSame(iter.next(), label2);
         Assert.assertFalse(iter.hasNext());
     }
+
+    /**
+     * Trying to really verify that children management works as it should by removing, adding and setting component
+     */
+    @Test
+    public void reallyTestOutChildren() {
+        ColumnLayout layout = new ColumnLayout();
+        Label label1 = new Label("1");
+        layout.addComponent(label1, 0, 0);
+        Label label2 = new Label("2");
+        layout.addComponent(label2, 0, -1);
+        Label label3 = new Label("3");
+        layout.addComponent(label3, 0, 2);
+
+        Iterator<Component> iter = layout.iterator();
+        Assert.assertSame(label1, iter.next());
+        Assert.assertSame(label2, iter.next());
+        Assert.assertSame(label3, iter.next());
+
+        Label label0 = new Label("0");
+        layout.addComponent(label0, 0, 0);
+        iter = layout.iterator();
+        Assert.assertSame(label0, iter.next());
+        Assert.assertSame(label1, iter.next());
+        Assert.assertSame(label2, iter.next());
+        Assert.assertSame(label3, iter.next());
+
+        Label label4 = new Label("4");
+        layout.setComponent(label4, 0, 4);
+        iter = layout.iterator();
+        Assert.assertSame(label0, iter.next());
+        Assert.assertSame(label1, iter.next());
+        Assert.assertSame(label2, iter.next());
+        Assert.assertSame(label3, iter.next());
+        Assert.assertSame(label4, iter.next());
+
+        layout.removeComponent(label1);
+        iter = layout.iterator();
+        Assert.assertSame(label0, iter.next());
+        Assert.assertSame(label2, iter.next());
+        Assert.assertSame(label3, iter.next());
+        Assert.assertSame(label4, iter.next());
+
+        Label newLabel1 = new Label("new 1");
+        layout.setComponent(newLabel1, 0, 0);
+        iter = layout.iterator();
+        Assert.assertSame(newLabel1, iter.next());
+        Assert.assertSame(label2, iter.next());
+        Assert.assertSame(label3, iter.next());
+        Assert.assertSame(label4, iter.next());
+
+        Label label5 = new Label("5");
+        layout.setComponent(label5, 0, 4);
+        iter = layout.iterator();
+        Assert.assertSame(newLabel1, iter.next());
+        Assert.assertSame(label2, iter.next());
+        Assert.assertSame(label3, iter.next());
+        Assert.assertSame(label4, iter.next());
+        Assert.assertSame(label5, iter.next());
+
+        Label newLabel3 = new Label("new 3");
+        layout.setComponent(newLabel3, 0, 2);
+        iter = layout.iterator();
+        Assert.assertSame(newLabel1, iter.next());
+        Assert.assertSame(label2, iter.next());
+        Assert.assertSame(newLabel3, iter.next());
+        Assert.assertSame(label4, iter.next());
+        Assert.assertSame(label5, iter.next());
+    }
 }

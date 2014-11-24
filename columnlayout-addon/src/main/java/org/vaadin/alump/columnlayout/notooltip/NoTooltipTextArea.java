@@ -6,6 +6,7 @@ import com.vaadin.ui.TextArea;
 /**
  * TextArea that does not use tooltip to show description or error
  */
+@SuppressWarnings("serial")
 public class NoTooltipTextArea extends TextArea {
     public NoTooltipTextArea() {
         super();

@@ -3,6 +3,7 @@ package org.vaadin.alump.columnlayout.demo.views;
 import com.vaadin.data.Property;
 import com.vaadin.ui.*;
 import org.vaadin.alump.columnlayout.ColumnLayout;
+import org.vaadin.alump.columnlayout.demo.components.SmallButton;
 
 import java.util.HashSet;
 import java.util.Set;

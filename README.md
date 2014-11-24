@@ -54,6 +54,16 @@ Another way of debugging client-side is superdev mode. To enable it, uncomment d
  
 ## Release notes
 
+### Version 0.1.2
+- setComponent functionality added (with placeholders)
+- More Material design CSS fixes
+- Fixing wrapping issue when used inside Vertical/HorizontalLayouts
+- More OSGi manifest fine tuning
+
+### Version 0.1.1
+- CSS fixes
+- OSGi manifest fine tuning
+
 ### Version 0.1.0
 - Initial release
 - Material design as example extension of ColumnLayout

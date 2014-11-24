@@ -13,6 +13,7 @@ import java.util.List;
  * on client side.
  * @see org.vaadin.alump.columnlayout.notooltip
  */
+@SuppressWarnings("serial")
 public class MaterialColumnLayout extends ColumnLayout {
 
     public final static String STYLE_NAME = "material";

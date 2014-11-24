@@ -6,6 +6,7 @@ import com.vaadin.ui.CheckBox;
 /**
  * CheckBox that does not use tooltip to show description or error
  */
+@SuppressWarnings("serial")
 public class NoTooltipCheckBox extends CheckBox {
     public NoTooltipCheckBox() {
         super();

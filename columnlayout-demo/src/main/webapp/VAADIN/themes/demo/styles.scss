@@ -35,4 +35,15 @@ $darkgreen: darken($green, 30%);
         }
       }
     }
+
+    .highlight-placeholders {
+      .slot-placeholder {
+        visibility: visible !important;
+        height: 10px !important;
+        background-color: rgba(0,128,128,0.8);
+      }
+      .column-slot > .placeholder {
+        box-shadow: 0px 0px 3px rgba(0,128,128,0.8);
+      }
+    }
 }

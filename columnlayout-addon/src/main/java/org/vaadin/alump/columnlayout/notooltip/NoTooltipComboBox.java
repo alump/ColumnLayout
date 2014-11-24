@@ -8,6 +8,7 @@ import java.util.Collection;
 /**
  * Combobox that does not use tooltip to show description or error
  */
+@SuppressWarnings("serial")
 public class NoTooltipComboBox extends ComboBox {
     public NoTooltipComboBox() {
         super();

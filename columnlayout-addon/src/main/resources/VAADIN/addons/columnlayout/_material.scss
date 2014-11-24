@@ -97,6 +97,62 @@
         > .v-caption.v-required:after {
           color: $material-font-color;
         }
+
+        > .column-tooltip {
+          display: block;
+          width: 100%;
+          font-size: 80%;
+
+          &.mode-desc {
+            color: $material-field-border-color;
+          }
+
+          &.mode-error {
+            color: $material-error-color;
+            position: relative;
+            overflow: hidden;
+
+            &:before {
+              display: block;
+              content: "";
+              position: absolute;
+              top: -2px;
+              left: 0px;
+              right: 0px;
+              height: 2px;
+              box-shadow: 0px 0px 3px $material-error-color;
+            }
+          }
+
+          &.mode-empty {
+            color: $material-field-border-color;
+          }
+        }
+        > .column-units {
+          position: absolute;
+          right: 0px;
+          bottom: 0px;
+          padding-right: $material-field-padding;
+        }
+
+        &.column-focus {
+          > .column-tooltip {
+            color: $material-font-color;
+            position: relative;
+            overflow: hidden;
+
+            &:before {
+              display: block;
+              content: "";
+              position: absolute;
+              top: -2px;
+              left: 0px;
+              right: 0px;
+              height: 2px;
+              box-shadow: 0px 0px 3px $material-focus-color;
+            }
+          }
+        }
       }
     }
 

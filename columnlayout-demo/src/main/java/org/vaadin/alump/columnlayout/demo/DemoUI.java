@@ -1,11 +1,8 @@
 package org.vaadin.alump.columnlayout.demo;
 
-import com.vaadin.data.Validator;
-import com.vaadin.data.validator.EmailValidator;
 import com.vaadin.navigator.Navigator;
 import com.vaadin.navigator.View;
 import com.vaadin.ui.*;
-import org.vaadin.alump.columnlayout.ColumnLayout;
 
 import javax.servlet.annotation.WebServlet;
 
@@ -15,10 +12,6 @@ import com.vaadin.annotations.VaadinServletConfiguration;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.server.VaadinServlet;
 import org.vaadin.alump.columnlayout.demo.views.*;
-import org.vaadin.alump.columnlayout.material.MaterialColumnLayout;
-import org.vaadin.alump.columnlayout.notooltip.*;
-
-import java.util.Date;
 
 /**
  * Demo UI of ColumnLayout Vaadin add-on
@@ -40,6 +33,7 @@ public class DemoUI extends UI {
         addViewToNavigator(navigator, BasicView.class);
         addViewToNavigator(navigator, MaterialView.class);
         addViewToNavigator(navigator, Issue1View.class);
+        addViewToNavigator(navigator, Issue2View.class);
     }
 
     protected static void addViewToNavigator(Navigator navigator, Class<? extends View> viewClass) {

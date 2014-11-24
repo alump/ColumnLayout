@@ -6,6 +6,7 @@ import com.vaadin.ui.TextField;
 /**
  * TextField that does not use tooltip to show description of error
  */
+@SuppressWarnings("serial")
 public class NoTooltipTextField extends TextField {
     public NoTooltipTextField() {
         super();

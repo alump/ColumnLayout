@@ -8,6 +8,7 @@ import java.util.Date;
 /**
  * DateField that does not use tooltip to show description or error
  */
+@SuppressWarnings("serial")
 public class NoTooltipDateField extends DateField {
 
     public NoTooltipDateField() {
