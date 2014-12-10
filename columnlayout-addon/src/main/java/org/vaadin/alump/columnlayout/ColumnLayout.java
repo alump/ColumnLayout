@@ -273,7 +273,8 @@ public class ColumnLayout extends AbstractLayout implements Layout.SpacingHandle
     }
 
     /**
-     * Define if columns should expand to fill empty space
+     * Define if columns should expand to fill empty space. When columns are expanding the width given to setColumnWidth
+     * become the minimum width of columns.
      * @param expand true to expand, false to not
      */
     public void setExpandingColumns(boolean expand) {
