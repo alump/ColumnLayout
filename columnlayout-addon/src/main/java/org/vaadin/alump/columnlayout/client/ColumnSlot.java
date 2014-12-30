@@ -18,7 +18,7 @@ public class ColumnSlot extends SimplePanel {
     public final static String CAPTION_REQUIRED_CLASSNAME = "v-required";
 
     public ColumnSlot() {
-        setElement(Document.get().createDivElement());
+        super(Document.get().createDivElement());
         setStyleName(SLOT_CLASSNAME);
     }
 
