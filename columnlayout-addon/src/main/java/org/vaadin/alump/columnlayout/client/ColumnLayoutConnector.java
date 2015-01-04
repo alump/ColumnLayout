@@ -1,5 +1,6 @@
 package org.vaadin.alump.columnlayout.client;
 
+import com.google.web.bindery.event.shared.HandlerRegistration;
 import com.vaadin.client.ComponentConnector;
 import com.vaadin.client.ConnectorHierarchyChangeEvent;
 import com.vaadin.client.DirectionalManagedLayout;
@@ -11,6 +12,8 @@ import com.vaadin.shared.ui.Connect;
 import org.vaadin.alump.columnlayout.ColumnLayout;
 import org.vaadin.alump.columnlayout.client.share.ColumnLayoutState;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Logger;
 
 /**
@@ -20,6 +23,8 @@ import java.util.logging.Logger;
 public class ColumnLayoutConnector extends AbstractLayoutConnector implements DirectionalManagedLayout {
 
     private final static Logger LOGGER = Logger.getLogger(ColumnLayoutConnector.class.getName());
+
+    private final List<HandlerRegistration> stateChangeHandlers = new ArrayList<HandlerRegistration>();
 
     @Override
     public ColumnLayoutState getState() {
@@ -38,6 +43,12 @@ public class ColumnLayoutConnector extends AbstractLayoutConnector implements Di
 
     @Override
     public void onUnregister() {
+        // Remove all state change handlers
+        for(HandlerRegistration handler : stateChangeHandlers) {
+            handler.removeHandler();
+        }
+        stateChangeHandlers.clear();
+
         getLayoutManager().unregisterDependency(this, getWidget().getContentElement());
         super.onUnregister();
     }
@@ -54,20 +65,26 @@ public class ColumnLayoutConnector extends AbstractLayoutConnector implements Di
 
     @Override
     public void onConnectorHierarchyChange(ConnectorHierarchyChangeEvent event) {
-        // TODO: optimize, now this reconstructs everything
-        for(ComponentConnector cc : event.getOldChildren()) {
-            cc.removeStateChangeHandler(childStateListener);
+        // Remove old state change handlers
+        for(HandlerRegistration handler : stateChangeHandlers) {
+            handler.removeHandler();
         }
+        stateChangeHandlers.clear();
 
+        // Remove all widgets
         getWidget().clear();
 
+        // Reconstruct widgets and handlers
         for(int i = 0; i < getState().columns.size(); ++i) {
             ColumnLayoutState.ColumnState column = getState().columns.get(i);
             for(Connector child : column.children) {
                 ComponentConnector cc = (ComponentConnector) child;
-                cc.addStateChangeHandler(childStateListener);
-                getWidget().add(cc.getWidget(), i);
-                updateChildState(null, cc);
+                // Hidden children are listed in state as null, ignore those
+                if(cc != null) {
+                    stateChangeHandlers.add(cc.addStateChangeHandler(childStateListener));
+                    getWidget().add(cc.getWidget(), i);
+                    updateChildState(null, cc);
+                }
             }
         }
 

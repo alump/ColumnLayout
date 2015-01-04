@@ -43,6 +43,7 @@ public class MenuView extends AbstractView {
 
         issues.addComponent(new Button("#1", e -> navigateTo(Issue1View.class)));
         issues.addComponent(new Button("#2", e -> navigateTo(Issue2View.class)));
+        issues.addComponent(new Button("#3", e -> navigateTo(Issue3View.class)));
     }
 
 
