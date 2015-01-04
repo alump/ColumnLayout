@@ -54,6 +54,9 @@ Another way of debugging client-side is superdev mode. To enable it, uncomment d
  
 ## Release notes
 
+### Version 0.1.4
+- Fix client side exceptions when invisible child components
+
 ### Version 0.1.3
 - Fix client side exception caused when slots made
 - Documentation improvements
