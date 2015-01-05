@@ -54,6 +54,10 @@ Another way of debugging client-side is superdev mode. To enable it, uncomment d
  
 ## Release notes
 
+
+### Version 0.1.5
+- Parametrized column-layout SCSS mixin. Allows to override parameters of specific stylenamed ColumnLayouts.
+
 ### Version 0.1.4
 - Fix client side exceptions when invisible child components
 

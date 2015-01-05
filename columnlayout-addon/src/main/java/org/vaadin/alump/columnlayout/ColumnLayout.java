@@ -290,7 +290,8 @@ public class ColumnLayout extends AbstractLayout implements Layout.SpacingHandle
     }
 
     /**
-     * Define column width in pixels. If columns are expanding this value is used as minimum width of column.
+     * Define column width in pixels. If columns are expanding this value is used as minimum width of column. Default
+     * value is 300px.
      * @param pixels Width of column in pixels
      */
     public void setColumnWidth(int pixels) {

@@ -1,76 +1,99 @@
 @import "material";
 
-@mixin columnlayout {
+@mixin column-layout(
+  $cl-layout-spacing-horizontal: 30px,
+  $cl-layout-spacing-vertical: 30px,
+  $cl-required-color: red) {
 
-  /* Spacing values used when spacing enabled */
-  $v-layout-spacing-horizontal: 30px !default;
-  $cl-layout-spacing-horizontal: $v-layout-spacing-horizontal !default;
+  box-sizing: border-box;
 
-  $v-layout-spacing-vertical: 30px !default;
-  $cl-layout-spacing-vertical: $v-layout-spacing-vertical !default;
+  > .column-panel-content {
+    width: 100%;
+    white-space: normal;
 
-  .column-layout {
-    box-sizing: border-box;
+    > .column {
+      display: inline-block;
+      position: relative;
+      vertical-align: top;
 
-    >.column-panel-content {
-      width: 100%;
-      white-space: normal;
-
-      > .column {
-        display: inline-block;
-        position: relative;
-        vertical-align: top;
-
-        &.wrapped {
-          margin-top: $cl-layout-spacing-vertical;
-        }
-      }
-
-      > .v-spacing {
-        display: none;
-        position: relative;
-        width: 0px;
-      }
-
-      .column-slot {
-        position: relative;
-        display: block;
-
-        > .v-caption {
-          display: block;
-          width: 100%;
-        }
-        > .v-caption.v-required:after {
-          content: "*";
-          color: red;
-          padding-left: 3px;
-        }
-
-        > .slot-placeholder {
-          width: 100%;
-          height: 1px;
-          display: block;
-          visibility: hidden;
-        }
-      }
-    }
-
-    &.spacing {
-      > .column-panel-content > .v-spacing {
-        display: inline-block;
-        width: $cl-layout-spacing-horizontal;
-      }
-
-      > .column-panel-content > .column > .column-slot {
+      &.wrapped {
         margin-top: $cl-layout-spacing-vertical;
       }
-
-      > .column-panel-content > .column > .column-slot:first-child {
-        margin-top: 0px;
-      }
     }
 
+    > .v-spacing {
+      display: none;
+      position: relative;
+      width: 0px;
+    }
 
-    @include columnlayout-material;
+    .column-slot {
+      position: relative;
+      display: block;
+
+      > .v-caption {
+        display: block;
+        width: 100%;
+      }
+      > .v-caption.v-required:after {
+        content: "*";
+        color: $cl-required-color;
+        padding-left: 3px;
+      }
+
+      > .slot-placeholder {
+        width: 100%;
+        height: 1px;
+        display: block;
+        visibility: hidden;
+      }
+    }
+  }
+
+  &.spacing {
+    > .column-panel-content > .v-spacing {
+      display: inline-block;
+      width: $cl-layout-spacing-horizontal;
+    }
+
+    > .column-panel-content > .column > .column-slot {
+      margin-top: $cl-layout-spacing-vertical;
+    }
+
+    > .column-panel-content > .column > .column-slot:first-child {
+      margin-top: 0px;
+    }
+  }
+}
+
+// Default mixin used as default
+@mixin columnlayout {
+  $v-layout-spacing-horizontal: 30px !default;
+  $my-spacing-horizontal: $v-layout-spacing-horizontal !default;
+
+  $v-layout-spacing-vertical: 30px !default;
+  $my-spacing-vertical: $v-layout-spacing-vertical !default;
+
+  .column-layout {
+    @include column-layout(
+      $cl-layout-spacing-horizontal: $my-spacing-horizontal,
+      $cl-layout-spacing-vertical: $my-spacing-vertical);
+
+    // material design applied when material style name used
+    &.material {
+      $v-focus-color: #33F !default;
+      $my-focus-color: $v-focus-color !default;
+
+      $v-error-indicator-color: #ed473b !default;
+      $my-error-color: $v-error-indicator-color !default;
+
+      $v-font-color: #222 !default;
+      $my-font-color: $v-font-color !default;
+
+      @include columnlayout-material(
+        $material-font-color: $my-font-color,
+        $material-focus-color: $my-focus-color,
+        $material-error-color: $my-error-color);
+    }
   }
 }

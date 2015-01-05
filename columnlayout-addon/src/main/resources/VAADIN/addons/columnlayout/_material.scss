@@ -1,77 +1,64 @@
-@mixin columnlayout-material {
+@mixin columnlayout-material(
+  $material-line-width: 1px,
+  $material-readonly-line-width: 0px,
+  $material-field-padding: 9px,
+  $material-field-border-color: gray,
+  $material-font-color: #222,
+  $material-focus-color: #33F,
+  $material-error-color: #ed473b) {
 
   /* Color of text used to override Valo coloring in some parts */
-  $v-font-color: #222 !default;
-  $material-font-color: $v-font-color !default;
+  //$v-font-color: #222 !default;
+  //$material-font-color: $v-font-color !default;
 
   /* Color of error line and shadow in material style */
-  $v-error-indicator-color: #ed473b !default;
-  $material-error-color: $v-error-indicator-color !default;
+
+  //$v-error-indicator-color: #ed473b !default;
+  //$material-error-color: $v-error-indicator-color !default;
 
   /* Color used when in focus */
-  $v-focus-color: #33F !default;
-  $material-focus-color: $v-focus-color !default;
+  //$v-focus-color: #33F !default;
+  //$material-focus-color: $v-focus-color !default;
 
   /* Color of border under line in material style */
-  $material-field-border-color: gray !default;
+  //$material-field-border-color: gray !default;
 
   /* Padding needed to align some moved components */
-  $material-field-padding: 9px !default;
+  //$material-field-padding: 9px !default;
 
   /* Width of underlines of fields */
-  $material-line-width: 1px !default;
-  $material-readonly-line-width: 0px !default;
+  //$material-line-width: 1px !default;
+  //$material-readonly-line-width: 0px !default;
 
-  &.material {
-    .v-textfield {
-      background: none;
-      border-width: 0px 0px $material-line-width 0px;
-      border-radius: 0px;
+  .v-textfield {
+    background: none;
+    border-width: 0px 0px $material-line-width 0px;
+    border-radius: 0px;
+    box-shadow: none;
+
+    &:focus {
       box-shadow: none;
-
-      &:focus {
-        box-shadow: none;
-      }
-
-      &.v-readonly {
-        border-width: 0px 0px $material-readonly-line-width 0px;
-      }
     }
 
-    .v-datefield {
-      .v-datefield-button {
-        border-width: 0px;
-        right: 0px;
-        left: auto;
-      }
-      .v-textfield {
-        padding-left: $material-field-padding;
-        padding-right: 44px;
-      }
+    &.v-readonly {
+      border-width: 0px 0px $material-readonly-line-width 0px;
     }
+  }
 
-    .v-filterselect {
-      .v-filterselect-input {
-        border-width: 0px 0px 1px 0px;
-        border-radius: 0px;
-        background: transparent;
-        box-shadow: none;
-
-        &:focus {
-          box-shadow: none;
-        }
-      }
-      .v-filterselect-button {
-        border-width: 0px;
-      }
-      &.v-readonly {
-        .v-filterselect-input {
-          border-width: 0px 0px $material-readonly-line-width 0px;
-        }
-      }
+  .v-datefield {
+    .v-datefield-button {
+      border-width: 0px;
+      right: 0px;
+      left: auto;
     }
+    .v-textfield {
+      padding-left: $material-field-padding;
+      padding-right: 44px;
+    }
+  }
 
-    .v-textarea {
+  .v-filterselect {
+    .v-filterselect-input {
       border-width: 0px 0px 1px 0px;
       border-radius: 0px;
       background: transparent;
@@ -80,97 +67,116 @@
       &:focus {
         box-shadow: none;
       }
-
-      &.v-readonly {
+    }
+    .v-filterselect-button {
+      border-width: 0px;
+    }
+    &.v-readonly {
+      .v-filterselect-input {
         border-width: 0px 0px $material-readonly-line-width 0px;
       }
     }
+  }
 
-    .v-checkbox {
-      input:focus ~ label:before {
-        box-shadow: none;
-      }
+  .v-textarea {
+    border-width: 0px 0px 1px 0px;
+    border-radius: 0px;
+    background: transparent;
+    box-shadow: none;
+
+    &:focus {
+      box-shadow: none;
     }
 
-    > .column-panel-content {
-      .column-slot {
-        > .v-caption.v-required:after {
-          color: $material-font-color;
-        }
-
-        > .column-tooltip {
-          display: block;
-          width: 100%;
-          font-size: 80%;
-
-          &.mode-desc {
-            color: $material-field-border-color;
-          }
-
-          &.mode-error {
-            color: $material-error-color;
-            position: relative;
-            overflow: hidden;
-
-            &:before {
-              display: block;
-              content: "";
-              position: absolute;
-              top: -2px;
-              left: 0px;
-              right: 0px;
-              height: 2px;
-              box-shadow: 0px 0px 3px $material-error-color;
-            }
-          }
-
-          &.mode-empty {
-            color: $material-field-border-color;
-          }
-        }
-        > .column-units {
-          position: absolute;
-          right: 0px;
-          bottom: 0px;
-          padding-right: $material-field-padding;
-        }
-
-        &.column-focus {
-          > .column-tooltip {
-            color: $material-font-color;
-            position: relative;
-            overflow: hidden;
-
-            &:before {
-              display: block;
-              content: "";
-              position: absolute;
-              top: -2px;
-              left: 0px;
-              right: 0px;
-              height: 2px;
-              box-shadow: 0px 0px 3px $material-focus-color;
-            }
-          }
-        }
-      }
+    &.v-readonly {
+      border-width: 0px 0px $material-readonly-line-width 0px;
     }
+  }
 
-    .loading-field {
-      opacity: 0.5;
-      pointer-events: none;
-      position: relative;
+  .v-checkbox {
+    input:focus ~ label:before {
+      box-shadow: none;
+    }
+  }
 
-      &:before {
+  > .column-panel-content {
+    .column-slot {
+      > .v-caption.v-required:after {
+        color: $material-font-color;
+      }
+
+      > .column-tooltip {
         display: block;
-        position: absolute;
-        content: "";
-        left: 50%;
-        top: 50%;
-        margin-top: -12px;
-        margin-left: -12px;
-        @include valo-spinner($size: 24px);
+        width: 100%;
+        font-size: 80%;
+
+        &.mode-desc {
+          color: $material-field-border-color;
+        }
+
+        &.mode-error {
+          color: $material-error-color;
+          position: relative;
+          overflow: hidden;
+
+          &:before {
+            display: block;
+            content: "";
+            position: absolute;
+            top: -2px;
+            left: 0px;
+            right: 0px;
+            height: 2px;
+            box-shadow: 0px 0px 3px $material-error-color;
+          }
+        }
+
+        &.mode-empty {
+          color: $material-field-border-color;
+        }
       }
+      > .column-units {
+        position: absolute;
+        right: 0px;
+        bottom: 0px;
+        padding-right: $material-field-padding;
+      }
+
+      &.column-focus {
+        > .column-tooltip {
+          color: $material-font-color;
+          position: relative;
+          overflow: hidden;
+
+          &:before {
+            display: block;
+            content: "";
+            position: absolute;
+            top: -2px;
+            left: 0px;
+            right: 0px;
+            height: 2px;
+            box-shadow: 0px 0px 3px $material-focus-color;
+          }
+        }
+      }
+    }
+  }
+
+  .loading-field {
+    opacity: 0.5;
+    pointer-events: none;
+    position: relative;
+
+    &:before {
+      display: block;
+      position: absolute;
+      content: "";
+      left: 50%;
+      top: 50%;
+      margin-top: -12px;
+      margin-left: -12px;
+      @include valo-spinner($size: 24px);
     }
   }
 }

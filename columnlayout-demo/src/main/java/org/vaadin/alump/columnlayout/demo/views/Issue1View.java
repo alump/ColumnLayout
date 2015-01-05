@@ -14,7 +14,7 @@ public class Issue1View extends CLView {
 
     @Override
     protected void createMenuBar(HorizontalLayout menuBar) {
-        menuBar.addComponent(new Label("Resizing window smaller should move second button under the first"));
+        menuBar.addComponent(new Label("Resizing window small enough should move second button under the first"));
     }
 
     @Override
