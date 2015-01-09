@@ -82,18 +82,18 @@
     // material design applied when material style name used
     &.material {
       $v-focus-color: #33F !default;
-      $my-focus-color: $v-focus-color !default;
+      $columnlayout-material-focus-color: $v-focus-color !default;
 
       $v-error-indicator-color: #ed473b !default;
-      $my-error-color: $v-error-indicator-color !default;
+      $columnlayout-material-error-color: $v-error-indicator-color !default;
 
       $v-font-color: #222 !default;
-      $my-font-color: $v-font-color !default;
+      $columnlayout-material-font-color: $v-font-color !default;
 
       @include columnlayout-material(
-        $material-font-color: $my-font-color,
-        $material-focus-color: $my-focus-color,
-        $material-error-color: $my-error-color);
+        $material-font-color: $columnlayout-material-font-color,
+        $material-focus-color: $columnlayout-material-focus-color,
+        $material-error-color: $columnlayout-material-error-color);
     }
   }
 }
