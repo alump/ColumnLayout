@@ -3,17 +3,16 @@ package org.vaadin.alump.columnlayout.client.material;
 import com.google.gwt.dom.client.Document;
 import com.google.gwt.dom.client.Element;
 import com.google.gwt.dom.client.Style;
-import com.google.gwt.event.dom.client.BlurEvent;
-import com.google.gwt.event.dom.client.BlurHandler;
-import com.google.gwt.event.dom.client.FocusEvent;
-import com.google.gwt.event.dom.client.FocusHandler;
+import com.google.gwt.event.dom.client.*;
 import com.google.gwt.event.shared.HandlerRegistration;
+import com.google.gwt.user.client.DOM;
+import com.google.gwt.user.client.EventListener;
 import com.google.gwt.user.client.ui.ButtonBase;
 import com.google.gwt.user.client.ui.FocusWidget;
 import com.google.gwt.user.client.ui.Widget;
 import com.vaadin.client.ui.VButton;
-import com.vaadin.client.ui.VCheckBox;
 import org.vaadin.alump.columnlayout.client.ColumnSlot;
+import com.google.gwt.user.client.Event;
 
 import java.util.logging.Logger;
 
@@ -36,6 +35,12 @@ public class MaterialColumnSlot extends ColumnSlot implements FocusHandler, Blur
 
     private final static Logger LOGGER = Logger.getLogger(MaterialColumnSlot.class.getName());
 
+    public interface MaterialColumnSlotEventHandler {
+        void onTooltipClick(MaterialColumnSlot slot);
+    }
+
+    private MaterialColumnSlotEventHandler eventHandler = null;
+
     @Override
     public MaterialColumnSlot init(Widget child) {
         super.init(child);
@@ -52,6 +57,35 @@ public class MaterialColumnSlot extends ColumnSlot implements FocusHandler, Blur
         getElement().appendChild(tooltipElement);
 
         return this;
+    }
+
+    public void setMaterialColumnSlotEventHandler(MaterialColumnSlotEventHandler handler) {
+        eventHandler = handler;
+    }
+
+    @Override
+    protected void onAttach() {
+        super.onAttach();
+
+        DOM.sinkEvents(tooltipElement, Event.ONCLICK);
+        DOM.setEventListener(tooltipElement, tooltipEventListener);
+
+    }
+
+    protected EventListener tooltipEventListener = new EventListener() {
+
+        @Override
+        public void onBrowserEvent(Event event) {
+            if(event.getTypeInt() == Event.ONCLICK) {
+                onTooltipClick(event);
+            }
+        }
+    };
+
+    protected void onTooltipClick(Event event) {
+        if(eventHandler != null) {
+            eventHandler.onTooltipClick(this);
+        }
     }
 
     /**
@@ -129,7 +163,6 @@ public class MaterialColumnSlot extends ColumnSlot implements FocusHandler, Blur
      */
     public MaterialColumnSlot setTooltip(String description, String errorMessage) {
         boolean hasError = errorMessage != null;
-        boolean isHtml = hasError;
         String message = hasError ? errorMessage : description;
 
         if(message == null || message.isEmpty()) {
@@ -138,11 +171,7 @@ public class MaterialColumnSlot extends ColumnSlot implements FocusHandler, Blur
             tooltipElement.setInnerHTML("&nbsp;");
             tooltipElement.addClassName(TOOLTIP_EMPTY_CLASSNAME);
         } else {
-            if(isHtml) {
-                tooltipElement.setInnerHTML(message);
-            } else {
-                tooltipElement.setInnerText(message);
-            }
+            tooltipElement.setInnerHTML(message);
             tooltipElement.removeClassName(TOOLTIP_EMPTY_CLASSNAME);
             if(hasError) {
                 tooltipElement.removeClassName(TOOLTIP_DESCRIPTION_CLASSNAME);

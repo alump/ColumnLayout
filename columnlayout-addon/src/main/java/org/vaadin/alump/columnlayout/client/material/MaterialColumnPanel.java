@@ -7,7 +7,13 @@ import org.vaadin.alump.columnlayout.client.ColumnSlot;
 /**
  * Material extensions to ColumnPanel
  */
-public class MaterialColumnPanel extends ColumnPanel {
+public class MaterialColumnPanel extends ColumnPanel implements MaterialColumnSlot.MaterialColumnSlotEventHandler {
+
+    private MaterialColumnPanel.EventHandler eventHandler;
+
+    public interface EventHandler {
+        void onTooltipOfChildClicked(Widget child);
+    }
 
     public MaterialColumnPanel() {
         super();
@@ -15,8 +21,9 @@ public class MaterialColumnPanel extends ColumnPanel {
 
             @Override
             public ColumnSlot createWidgetSlot(Widget widget) {
-                ColumnSlot slot = new MaterialColumnSlot();
+                MaterialColumnSlot slot = new MaterialColumnSlot();
                 slot.init(widget);
+                slot.setMaterialColumnSlotEventHandler(MaterialColumnPanel.this);
                 return slot;
             }
         });
@@ -35,5 +42,16 @@ public class MaterialColumnPanel extends ColumnPanel {
     @Override
     public MaterialColumnSlot getSlot(Widget widget) {
         return (MaterialColumnSlot)super.getSlot(widget);
+    }
+
+    @Override
+    public void onTooltipClick(MaterialColumnSlot slot) {
+        if(eventHandler != null) {
+            eventHandler.onTooltipOfChildClicked(slot.getWidget());
+        }
+    }
+
+    public void setMaterialColumnPanelEventHandler(MaterialColumnPanel.EventHandler handler) {
+        eventHandler = handler;
     }
 }

@@ -54,6 +54,8 @@ Another way of debugging client-side is superdev mode. To enable it, uncomment d
  
 ## Release notes
 
+### Version 0.1.6
+- Tooltip text now always handled as HTML (to match with other Vaadin layouts)
 
 ### Version 0.1.5
 - Parametrized column-layout SCSS mixin. Allows to override parameters of specific stylenamed ColumnLayouts.

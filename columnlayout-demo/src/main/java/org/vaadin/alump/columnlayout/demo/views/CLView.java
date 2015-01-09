@@ -1,6 +1,7 @@
 package org.vaadin.alump.columnlayout.demo.views;
 
 import com.vaadin.event.MouseEvents;
+import com.vaadin.server.FontAwesome;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Panel;
@@ -28,7 +29,10 @@ public abstract class CLView extends AbstractView {
         menuBar.setSpacing(true);
         menuBar.setMargin(true);
         addComponent(menuBar);
-        menuBar.addComponent(new SmallButton("≡", e -> navigateTo(MenuView.class)));
+
+        SmallButton button = new SmallButton(FontAwesome.BARS.getHtml(), e -> navigateTo(MenuView.class));
+        button.setHtmlContentAllowed(true);
+        menuBar.addComponent(button);
         createMenuBar(menuBar);
     }
 

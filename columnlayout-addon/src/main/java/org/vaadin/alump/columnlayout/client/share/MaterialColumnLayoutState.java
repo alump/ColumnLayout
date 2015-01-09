@@ -15,4 +15,9 @@ public class MaterialColumnLayoutState extends ColumnLayoutState {
      * Unit string map
      */
     public Map<Connector, String> unitMap = new HashMap<Connector, String>();
+
+    /**
+     * If client side should listen tooltip clicks and notify server
+     */
+    public boolean listenTooltipClicks = false;
 }

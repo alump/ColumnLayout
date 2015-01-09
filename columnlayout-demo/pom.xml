@@ -5,7 +5,7 @@
 	<groupId>org.vaadin.alump.columnlayout</groupId>
 	<artifactId>columnlayout-demo</artifactId>
 	<packaging>war</packaging>
-	<version>0.1.5</version>
+	<version>0.1.6-SNAPSHOT</version>
 	<name>ColumnLayout Add-on Demo</name>
 
 	<properties>
@@ -86,6 +86,7 @@
 			<groupId>com.vaadin</groupId>
 			<artifactId>vaadin-client-compiler</artifactId>
 			<version>${vaadin.version}</version>
+			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>com.vaadin</groupId>

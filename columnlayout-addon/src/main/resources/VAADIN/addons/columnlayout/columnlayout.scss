@@ -69,15 +69,15 @@
 // Default mixin used as default
 @mixin columnlayout {
   $v-layout-spacing-horizontal: 30px !default;
-  $my-spacing-horizontal: $v-layout-spacing-horizontal !default;
+  $columnlayout-spacing-horizontal: $v-layout-spacing-horizontal !default;
 
   $v-layout-spacing-vertical: 30px !default;
-  $my-spacing-vertical: $v-layout-spacing-vertical !default;
+  $columnlayout-spacing-vertical: $v-layout-spacing-vertical !default;
 
   .column-layout {
     @include column-layout(
-      $cl-layout-spacing-horizontal: $my-spacing-horizontal,
-      $cl-layout-spacing-vertical: $my-spacing-vertical);
+      $cl-layout-spacing-horizontal: $columnlayout-spacing-horizontal,
+      $cl-layout-spacing-vertical: $columnlayout-spacing-vertical);
 
     // material design applied when material style name used
     &.material {
