@@ -55,16 +55,18 @@ Another way of debugging client-side is superdev mode. To enable it, uncomment d
 ## Release notes
 
 ### Version 0.1.6
-- Tooltip text now always handled as HTML (to match with other Vaadin layouts)
+- Material tooltip texts (descriptions) now assumed to be HTML (issue #6)
+- Material tooltip clicks will be notified to server side (issue #6)
+- Fixes bad SCSS variable naming in 0.1.5 (issue #5)
 
 ### Version 0.1.5
-- Parametrized column-layout SCSS mixin. Allows to override parameters of specific stylenamed ColumnLayouts.
+- Parametrized column-layout SCSS mixin. Allows to override parameters of specific stylenamed ColumnLayouts (issue #4)
 
 ### Version 0.1.4
-- Fix client side exceptions when invisible child components
+- Fix client side exceptions when invisible child components (issue #3)
 
 ### Version 0.1.3
-- Fix client side exception caused when slots made
+- Fix client side exception caused when slots made (issue #3)
 - Documentation improvements
 
 ### Version 0.1.2
@@ -85,8 +87,7 @@ Another way of debugging client-side is superdev mode. To enable it, uncomment d
 
 ## Roadmap
 
-This component is developed as a hobby with no public roadmap or any guarantees of upcoming releases. That said, the following features are planned for upcoming releases:
-- TBD
+Feature requests and plans can be found from project's GitHub issue tracker
 
 ## Issue tracking
 

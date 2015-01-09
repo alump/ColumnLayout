@@ -39,7 +39,7 @@ public class Issue6View extends CLView implements TooltipClickListener {
         TextField field = new TextField("Text Field");
         field.setInputPrompt("Something");
         field.setWidth("100%");
-        field.setDescription(FontAwesome.QUESTION_CIRCLE.getHtml() + " This should <b>BOLD</b>");
+        field.setDescription(FontAwesome.QUESTION_CIRCLE.getHtml() + " This should be <b>BOLD</b>");
         layout.addComponent(field);
         layout.addComponent(field, 0);
 
