@@ -54,6 +54,9 @@ Another way of debugging client-side is superdev mode. To enable it, uncomment d
  
 ## Release notes
 
+### Version 0.1.7
+- Adds no tooltips versions of inline/popup datefield and slider
+
 ### Version 0.1.6
 - Material tooltip texts (descriptions) now assumed to be HTML (issue #6)
 - Material tooltip clicks will be notified to server side (issue #6)

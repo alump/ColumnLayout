@@ -152,6 +152,27 @@ public class MaterialView extends CLView {
         loading.setTextInputAllowed(false);
         columnLayout.addComponent(loading, 0);
 
+        /*
+        PopupDateField popupDate = new NoTooltipPopupDateField("Popup date");
+        popupDate.setValue(new Date());
+        popupDate.setWidth(100, Unit.PERCENTAGE);
+        columnLayout.addComponent(popupDate, 2);
+        */
+
+        InlineDateField inlineDate = new NoTooltipInlineDateField("Inline date");
+        inlineDate.setValue(new Date());
+        inlineDate.setWidth(100, Unit.PERCENTAGE);
+        inlineDate.setDescription("I'm inline datefield");
+        columnLayout.addComponent(inlineDate, 2);
+
+        Slider slider = new NoTooltipSlider("Slider");
+        slider.setMin(0.0);
+        slider.setMax(100.0);
+        slider.setValue(50.0);
+        slider.setWidth(100, Unit.PERCENTAGE);
+        slider.setDescription("I'm slider");
+        columnLayout.addComponent(slider, 1);
+
         return columnLayout;
     }
 

@@ -5,12 +5,12 @@
 	<groupId>org.vaadin.alump.columnlayout</groupId>
 	<artifactId>columnlayout-addon</artifactId>
 	<packaging>bundle</packaging>
-	<version>0.1.6</version>
+	<version>0.1.7-SNAPSHOT</version>
 	<name>ColumnLayout</name>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<vaadin.version>7.3.7</vaadin.version>
+		<vaadin.version>7.4.8</vaadin.version>
 		<vaadin.plugin.version>${vaadin.version}</vaadin.plugin.version>
 
 		<!-- ZIP Manifest fields -->
@@ -114,27 +114,6 @@
 				</configuration>
 			</plugin>
 
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-jar-plugin</artifactId>
-				<version>2.3.1</version>
-				<configuration>
-					<archive>
-						<index>true</index>
-						<manifest>
-							<addClasspath>true</addClasspath>
-							<addDefaultImplementationEntries>true</addDefaultImplementationEntries>
-						</manifest>
-						<manifestEntries>
-							<!-- Package format version - do not change -->
-							<Vaadin-Package-Version>1</Vaadin-Package-Version>
-							<Vaadin-License-Title>${Vaadin-License-Title}</Vaadin-License-Title>
-							<Vaadin-Widgetsets>${Vaadin-Widgetset}</Vaadin-Widgetsets>
-							<Vaadin-Stylesheets>${Vaadin-Stylesheets}</Vaadin-Stylesheets>
-						</manifestEntries>
-					</archive>
-				</configuration>
-			</plugin>
 
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -176,11 +155,26 @@
 							org.vaadin.alump.columnlayout.notooltip.*,
 							org.vaadin.alump.columnlayout.client.share.*
 						</Export-Package>
-						<Import-Package>com.vaadin.data;version="[7.3,8)",com.vaa
-							din.shared;version="[7.3,8)",com.vaadin.shared.communication;version="[
-							7.3,8)",com.vaadin.shared.ui;version="[7.3,8)",com.vaadin.ui;version="[
-							7.3,8)"</Import-Package>
+						<Import-Package>com.vaadin.data;version="[7.4,8)",
+							com.vaadin.shared;version="[7.4,8)",
+							com.vaadin.shared.communication;version="[7.4,8)",
+							com.vaadin.shared.ui;version="[7.4,8)",
+							com.vaadin.ui;version="[7.4,8)"</Import-Package>
 					</instructions>
+					<archive>
+						<index>true</index>
+						<manifest>
+							<addClasspath>true</addClasspath>
+							<addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+						</manifest>
+						<manifestEntries>
+							<!-- Package format version - do not change -->
+							<Vaadin-Package-Version>1</Vaadin-Package-Version>
+							<Vaadin-License-Title>${Vaadin-License-Title}</Vaadin-License-Title>
+							<Vaadin-Widgetsets>${Vaadin-Widgetset}</Vaadin-Widgetsets>
+							<Vaadin-Stylesheets>${Vaadin-Stylesheets}</Vaadin-Stylesheets>
+						</manifestEntries>
+					</archive>
 				</configuration>
 				<executions>
 					<execution>
