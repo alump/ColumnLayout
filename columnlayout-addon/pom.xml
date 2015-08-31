@@ -5,7 +5,7 @@
 	<groupId>org.vaadin.alump.columnlayout</groupId>
 	<artifactId>columnlayout-addon</artifactId>
 	<packaging>bundle</packaging>
-	<version>0.2.0-SNAPSHOT</version>
+	<version>0.2.0</version>
 	<name>ColumnLayout</name>
 
 	<properties>

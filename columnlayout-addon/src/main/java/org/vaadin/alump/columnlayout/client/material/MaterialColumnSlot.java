@@ -2,6 +2,7 @@ package org.vaadin.alump.columnlayout.client.material;
 
 import com.google.gwt.dom.client.Document;
 import com.google.gwt.dom.client.Element;
+import com.google.gwt.dom.client.NativeEvent;
 import com.google.gwt.dom.client.Style;
 import com.google.gwt.event.dom.client.*;
 import com.google.gwt.event.shared.HandlerRegistration;
@@ -36,7 +37,7 @@ public class MaterialColumnSlot extends ColumnSlot implements FocusHandler, Blur
     private final static Logger LOGGER = Logger.getLogger(MaterialColumnSlot.class.getName());
 
     public interface MaterialColumnSlotEventHandler {
-        void onTooltipClick(MaterialColumnSlot slot);
+        void onTooltipClick(MaterialColumnSlot slot, NativeEvent clickEvent);
     }
 
     private MaterialColumnSlotEventHandler eventHandler = null;
@@ -84,7 +85,7 @@ public class MaterialColumnSlot extends ColumnSlot implements FocusHandler, Blur
 
     protected void onTooltipClick(Event event) {
         if(eventHandler != null) {
-            eventHandler.onTooltipClick(this);
+            eventHandler.onTooltipClick(this, event);
         }
     }
 

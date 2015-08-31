@@ -1,9 +1,12 @@
 package org.vaadin.alump.columnlayout.client.material;
 
+import com.google.gwt.dom.client.NativeEvent;
 import com.google.gwt.user.client.ui.Widget;
 import com.vaadin.client.ComponentConnector;
 import com.vaadin.client.ConnectorHierarchyChangeEvent;
+import com.vaadin.client.MouseEventDetailsBuilder;
 import com.vaadin.client.communication.StateChangeEvent;
+import com.vaadin.shared.MouseEventDetails;
 import com.vaadin.shared.ui.Connect;
 import org.vaadin.alump.columnlayout.client.ColumnLayoutConnector;
 import org.vaadin.alump.columnlayout.client.share.MaterialColumnLayoutServerRpc;
@@ -69,11 +72,13 @@ public class MaterialColumnLayoutConnector extends ColumnLayoutConnector {
 
     private final MaterialColumnPanel.EventHandler panelEventHandler = new MaterialColumnPanel.EventHandler() {
         @Override
-        public void onTooltipOfChildClicked(Widget childWidget) {
+        public void onTooltipOfChildClicked(Widget childWidget, NativeEvent clickEvent) {
             if(getState().listenTooltipClicks) {
                 ComponentConnector childConnector = getChildWithWidget(childWidget);
+                MouseEventDetails details = MouseEventDetailsBuilder.buildMouseEventDetails(clickEvent,
+                        getWidget().getElement());
                 if(childConnector != null) {
-                    getRpcProxy(MaterialColumnLayoutServerRpc.class).onTooltipClicked(childConnector);
+                    getRpcProxy(MaterialColumnLayoutServerRpc.class).onTooltipClicked(childConnector, details);
                 } else {
                     LOGGER.warning("Failed to resolve child for clicked tooltip");
                 }

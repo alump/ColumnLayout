@@ -1,5 +1,6 @@
 package org.vaadin.alump.columnlayout.client.material;
 
+import com.google.gwt.dom.client.NativeEvent;
 import com.google.gwt.user.client.ui.Widget;
 import org.vaadin.alump.columnlayout.client.ColumnPanel;
 import org.vaadin.alump.columnlayout.client.ColumnSlot;
@@ -12,7 +13,7 @@ public class MaterialColumnPanel extends ColumnPanel implements MaterialColumnSl
     private MaterialColumnPanel.EventHandler eventHandler;
 
     public interface EventHandler {
-        void onTooltipOfChildClicked(Widget child);
+        void onTooltipOfChildClicked(Widget child, NativeEvent event);
     }
 
     public MaterialColumnPanel() {
@@ -45,9 +46,9 @@ public class MaterialColumnPanel extends ColumnPanel implements MaterialColumnSl
     }
 
     @Override
-    public void onTooltipClick(MaterialColumnSlot slot) {
+    public void onTooltipClick(MaterialColumnSlot slot, NativeEvent clickEvent) {
         if(eventHandler != null) {
-            eventHandler.onTooltipOfChildClicked(slot.getWidget());
+            eventHandler.onTooltipOfChildClicked(slot.getWidget(), clickEvent);
         }
     }
 

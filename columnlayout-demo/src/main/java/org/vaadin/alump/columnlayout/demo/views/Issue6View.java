@@ -70,6 +70,7 @@ public class Issue6View extends CLMaterialView implements TooltipClickListener {
 
     @Override
     public void onTooltipClicked(TooltipClickEvent event) {
-        Notification.show("Tooltip of " + event.getComponent().getCaption() + " clicked");
+        Notification.show("Tooltip of " + event.getComponent().getCaption() + " clicked (x:" + event.getClientX()
+                + ", y:" + event.getClientY() +")");
     }
 }

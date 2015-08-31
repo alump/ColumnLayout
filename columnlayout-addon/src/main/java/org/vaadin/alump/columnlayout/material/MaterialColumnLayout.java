@@ -1,6 +1,7 @@
 package org.vaadin.alump.columnlayout.material;
 
 import com.vaadin.shared.Connector;
+import com.vaadin.shared.MouseEventDetails;
 import com.vaadin.ui.Component;
 import org.vaadin.alump.columnlayout.ColumnLayout;
 import org.vaadin.alump.columnlayout.client.share.MaterialColumnLayoutServerRpc;
@@ -34,8 +35,8 @@ public class MaterialColumnLayout extends ColumnLayout {
 
     private final MaterialColumnLayoutServerRpc serverRpc = new MaterialColumnLayoutServerRpc() {
         @Override
-        public void onTooltipClicked(Connector child) {
-            TooltipClickEvent event = new TooltipClickEvent((Component)child);
+        public void onTooltipClicked(Connector child, MouseEventDetails mouseEventDetails) {
+            TooltipClickEvent event = new TooltipClickEvent((Component)child, mouseEventDetails);
             for(TooltipClickListener listener : tooltipClickListeners) {
                 listener.onTooltipClicked(event);
             }
