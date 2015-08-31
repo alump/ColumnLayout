@@ -56,6 +56,18 @@ public class BasicView extends CLView {
         cityAndZipCode.addComponent(zipCode);
         cityAndZipCode.setExpandRatio(zipCode, 1.0f);
 
+        Button toggleTheme = new Button("Toggle theme", event -> {
+            if(UI.getCurrent().getTheme().equals("demo")) {
+                UI.getCurrent().setTheme("demo2");
+                Notification.show("Theme is now Reindeer based", Notification.Type.TRAY_NOTIFICATION);
+            } else {
+                UI.getCurrent().setTheme("demo");
+                Notification.show("Theme is now Valo based", Notification.Type.TRAY_NOTIFICATION);
+            }
+        });
+        layout.addComponent(toggleTheme, 1);
+
+
         return layout;
     }
 

@@ -54,8 +54,20 @@ Another way of debugging client-side is superdev mode. To enable it, uncomment d
  
 ## Release notes
 
-### Version 0.1.7
-- Adds no tooltips versions of inline/popup datefield and slider
+### Version 0.2.0
+- Adds no tooltips versions of inline/popup datefield, slider and label
+- Material theme is now optional as it it depends on Valo theming. Here how to include it to your theme:
+```scss
+// ... these lines should follow importing your base theme (that is valo based)
+@import "addons";
+@import "../../../VAADIN/addons/columnlayout/columnlayout-material.scss";
+// ...
+@include addons;
+// Include optional material version
+@include columnlayout-material-default;
+// ...
+```
+If you have used advanced theming, so variable and mixing names have changed.
 
 ### Version 0.1.6
 - Material tooltip texts (descriptions) now assumed to be HTML (issue #6)

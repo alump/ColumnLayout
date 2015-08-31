@@ -1,11 +1,29 @@
-@import "material";
-
 @mixin column-layout(
-  $cl-layout-spacing-horizontal: 30px,
-  $cl-layout-spacing-vertical: 30px,
-  $cl-required-color: red) {
+  $cl-spacing-horizontal: 30px,
+  $cl-spacing-vertical: 30px,
+  $cl-required-color: red,
+  $cl-margin-top: 30px,
+  $cl-margin-right: 30px,
+  $cl-margin-bottom: 30px,
+  $cl-margin-left: 30px) {
 
   box-sizing: border-box;
+
+  &.v-margin-top {
+    padding-top: $cl-margin-top;
+  }
+
+  &.v-margin-bottom {
+    padding-bottom: $cl-margin-bottom;
+  }
+
+  &.v-margin-left {
+    padding-left: $cl-margin-left;
+  }
+
+  &.v-margin-right {
+    padding-right: $cl-margin-right;
+  }
 
   > .column-panel-content {
     width: 100%;
@@ -17,7 +35,7 @@
       vertical-align: top;
 
       &.wrapped {
-        margin-top: $cl-layout-spacing-vertical;
+        margin-top: $cl-spacing-vertical;
       }
     }
 
@@ -53,11 +71,11 @@
   &.spacing {
     > .column-panel-content > .v-spacing {
       display: inline-block;
-      width: $cl-layout-spacing-horizontal;
+      width: $cl-spacing-horizontal;
     }
 
     > .column-panel-content > .column > .column-slot {
-      margin-top: $cl-layout-spacing-vertical;
+      margin-top: $cl-spacing-vertical;
     }
 
     > .column-panel-content > .column > .column-slot:first-child {
@@ -66,7 +84,7 @@
   }
 }
 
-// Default mixin used as default
+// Default mixin with default values
 @mixin columnlayout {
   $v-layout-spacing-horizontal: 30px !default;
   $columnlayout-spacing-horizontal: $v-layout-spacing-horizontal !default;
@@ -74,26 +92,25 @@
   $v-layout-spacing-vertical: 30px !default;
   $columnlayout-spacing-vertical: $v-layout-spacing-vertical !default;
 
+  $v-layout-margin-top: 30px !default;
+  $columnlayout-margin-top: $v-layout-margin-top !default;
+
+  $v-layout-margin-right: 30px !default;
+  $columnlayout-margin-right: $v-layout-margin-right !default;
+
+  $v-layout-margin-bottom: 30px !default;
+  $columnlayout-margin-bottom: $v-layout-margin-bottom !default;
+
+  $v-layout-margin-left: 30px !default;
+  $columnlayout-margin-left: $v-layout-margin-left !default;
+
   .column-layout {
     @include column-layout(
-      $cl-layout-spacing-horizontal: $columnlayout-spacing-horizontal,
-      $cl-layout-spacing-vertical: $columnlayout-spacing-vertical);
-
-    // material design applied when material style name used
-    &.material {
-      $v-focus-color: #33F !default;
-      $columnlayout-material-focus-color: $v-focus-color !default;
-
-      $v-error-indicator-color: #ed473b !default;
-      $columnlayout-material-error-color: $v-error-indicator-color !default;
-
-      $v-font-color: #222 !default;
-      $columnlayout-material-font-color: $v-font-color !default;
-
-      @include columnlayout-material(
-        $material-font-color: $columnlayout-material-font-color,
-        $material-focus-color: $columnlayout-material-focus-color,
-        $material-error-color: $columnlayout-material-error-color);
-    }
+      $cl-spacing-horizontal: $columnlayout-spacing-horizontal,
+      $cl-spacing-vertical: $columnlayout-spacing-vertical,
+      $cl-margin-top: $columnlayout-margin-top,
+      $cl-margin-right: $columnlayout-margin-right,
+      $cl-margin-bottom: $columnlayout-margin-bottom,
+      $cl-margin-left: $columnlayout-margin-left);
   }
 }

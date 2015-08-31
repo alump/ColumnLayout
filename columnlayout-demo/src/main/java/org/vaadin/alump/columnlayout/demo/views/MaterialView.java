@@ -3,6 +3,8 @@ package org.vaadin.alump.columnlayout.demo.views;
 import com.vaadin.data.Property;
 import com.vaadin.data.Validator;
 import com.vaadin.data.validator.EmailValidator;
+import com.vaadin.navigator.ViewChangeListener;
+import com.vaadin.server.ErrorMessage;
 import com.vaadin.ui.*;
 import org.vaadin.alump.columnlayout.ColumnLayout;
 import org.vaadin.alump.columnlayout.material.MaterialColumnLayout;
@@ -18,7 +20,7 @@ import java.util.Set;
  */
 @ViewIdentifier("Material")
 @ViewDescription("Material design extension of ColumnLayout")
-public class MaterialView extends CLView {
+public class MaterialView extends CLMaterialView {
 
     private Component swapComponent;
     private TextField unit;
@@ -105,6 +107,21 @@ public class MaterialView extends CLView {
         checkBox.setCaption("I'm checkbox, hello!");
         checkBox.setDescription("Also checkbox can have description");
         columnLayout.addComponent(checkBox, 0);
+
+        Label label = new NoTooltipLabel("I'm just a label");
+        label.setCaption("Label can be also in material layout");
+        label.setComponentError(new ErrorMessage() {
+            @Override
+            public ErrorLevel getErrorLevel() {
+                return ErrorLevel.ERROR;
+            }
+
+            @Override
+            public String getFormattedHtmlMessage() {
+                return "Also label can have an error!";
+            }
+        });
+        columnLayout.addComponent(label, 0);
 
         unit = new NoTooltipTextField();
         fields.add(unit);

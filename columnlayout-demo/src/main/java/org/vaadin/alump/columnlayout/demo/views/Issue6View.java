@@ -13,7 +13,7 @@ import org.vaadin.alump.columnlayout.material.TooltipClickListener;
  */
 @ViewIdentifier("Issue6")
 @ViewDescription("Test case for issue #6")
-public class Issue6View extends CLView implements TooltipClickListener {
+public class Issue6View extends CLMaterialView implements TooltipClickListener {
     @Override
     protected void createMenuBar(HorizontalLayout menuBar) {
         CheckBox doNotListenClicks = new CheckBox("Do not listen tooltip clicks");

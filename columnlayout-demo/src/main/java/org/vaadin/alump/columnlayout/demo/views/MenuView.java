@@ -23,7 +23,7 @@ public class MenuView extends AbstractView {
         panelLayout.setWidth("100%");
         panel.setContent(panelLayout);
 
-        Label info = new Label("ColumnLayout is an UI component add-on for Vaadin 7.3+ and Valo based themes. It " +
+        Label info = new Label("ColumnLayout is an UI component add-on for Vaadin 7.4+ and Valo based themes. It " +
                 "provides alternative for Horizontal+VerticalLayout and GridLayout usage when building columned " +
                 "layouts.");
         panelLayout.addComponent(info);
