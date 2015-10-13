@@ -15,6 +15,9 @@ Official releases of this add-on are available at Vaadin Directory. For Maven in
 
 ## Release notes
 
+### Version 0.2.1
+- Cleaned up severe logging on client side
+
 ### Version 0.2.0
 - Adds click details to tooltip click event of MaterialColumnLayout
 - Adds no tooltips versions of inline/popup datefield, slider and label

@@ -219,7 +219,6 @@ public class ColumnPanel extends ComplexPanel {
             // Add style name if it looks like column has been wrapped
             element.removeClassName(WRAPPED_COLUMN_CLASSNAME);
             if(element.getAbsoluteTop() > getContentElement().getAbsoluteTop()) {
-                LOGGER.severe("wrapping " + i + ": " + element.getAbsoluteTop() + " " + getContentElement().getAbsoluteTop());
                 element.addClassName(WRAPPED_COLUMN_CLASSNAME);
             }
 

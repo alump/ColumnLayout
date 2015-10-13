@@ -102,7 +102,7 @@ public class ColumnLayoutConnector extends AbstractLayoutConnector implements Di
         public void onStateChanged(StateChangeEvent event) {
             ComponentConnector cc = (ComponentConnector)event.getConnector();
             if(cc.getParent() != ColumnLayoutConnector.this) {
-                LOGGER.severe("StateChangeHandler connection left behind!");
+                LOGGER.warning("StateChangeHandler connection left behind");
                 cc.removeStateChangeHandler(this);
                 return;
             }
