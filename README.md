@@ -15,6 +15,9 @@ Official releases of this add-on are available at Vaadin Directory. For Maven in
 
 ## Release notes
 
+### Version 0.2.2
+- TBD
+
 ### Version 0.2.1
 - Cleaned up severe logging on client side
 

@@ -64,7 +64,7 @@ public class MaterialColumnLayout extends ColumnLayout {
     /**
      * Define unit for component. Works best with NoTooltipTextFields.
      * @param child Child component that should have units shown
-     * @param unit Unit text (eg. "dollars")
+     * @param unit Unit text (eg. "dollars"), null value will clear units
      */
     public void setComponentUnit(Component child, String unit) {
         if(child.getParent() != this) {
