@@ -18,7 +18,7 @@ public class Issue2View extends CLView {
         CheckBox useCustomPlaceholder = new CheckBox("Use custom placeholder");
         useCustomPlaceholder.setDescription("Use custom placeholder class or default, will rebuild layout");
         useCustomPlaceholder.addValueChangeListener(e -> {
-            if ((Boolean) e.getProperty().getValue()) {
+            if (e.getValue()) {
                 getLayout().setPlaceholderClass(CustomPlaceholder.class);
             } else {
                 getLayout().setPlaceholderClass(null);
@@ -30,7 +30,7 @@ public class Issue2View extends CLView {
         CheckBox highlight = new CheckBox("Highlight");
         highlight.setDescription("Highlight all placeholders");
         highlight.addValueChangeListener(e -> {
-            if ((Boolean) e.getProperty().getValue()) {
+            if ((Boolean) e.getValue()) {
                 getLayout().addStyleName("highlight-placeholders");
             } else {
                 getLayout().removeStyleName("highlight-placeholders");

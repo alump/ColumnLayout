@@ -6,6 +6,7 @@ import com.vaadin.ui.*;
 import org.vaadin.alump.columnlayout.client.share.ColumnLayoutState;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 
@@ -103,6 +104,13 @@ public class ColumnLayout extends AbstractLayout implements Layout.SpacingHandle
             }
 
             addComponent(component, column, slotIndex);
+        }
+    }
+
+    public void setComponents(Collection<Component> components) {
+        removeAllComponents();
+        for (Component component : components) {
+            addComponent(component);
         }
     }
 

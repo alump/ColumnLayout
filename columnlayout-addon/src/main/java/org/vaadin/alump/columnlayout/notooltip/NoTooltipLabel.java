@@ -1,7 +1,6 @@
 package org.vaadin.alump.columnlayout.notooltip;
 
-import com.vaadin.data.Property;
-import com.vaadin.shared.ui.label.ContentMode;
+import com.vaadin.shared.ui.ContentMode;
 import com.vaadin.ui.Label;
 
 /**
@@ -26,16 +25,6 @@ public class NoTooltipLabel extends Label {
     }
 
     /**
-     * Creates a new instance of Label with text-contents read from given
-     * datasource.
-     *
-     * @param contentSource
-     */
-    public NoTooltipLabel(Property contentSource) {
-        super(contentSource);
-    }
-
-    /**
      * Creates a new instance of Label with text-contents.
      *
      * @param content
@@ -45,14 +34,4 @@ public class NoTooltipLabel extends Label {
         super(content, contentMode);
     }
 
-    /**
-     * Creates a new instance of Label with text-contents read from given
-     * datasource.
-     *
-     * @param contentSource
-     * @param contentMode
-     */
-    public NoTooltipLabel(Property contentSource, ContentMode contentMode) {
-        super(contentSource, contentMode);
-    }
 }

@@ -1,8 +1,8 @@
 package org.vaadin.alump.columnlayout.notooltip;
 
-import com.vaadin.data.Property;
 import com.vaadin.ui.DateField;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 /**
@@ -19,15 +19,7 @@ public class NoTooltipDateField extends DateField {
         super(caption);
     }
 
-    public NoTooltipDateField(String caption, Property dataSource) {
-        super(caption, dataSource);
-    }
-
-    public NoTooltipDateField(Property dataSource) throws java.lang.IllegalArgumentException {
-        super(dataSource);
-    }
-
-    public NoTooltipDateField(String caption, Date value) {
+    public NoTooltipDateField(String caption, LocalDate value) {
         super(caption, value);
     }
 }

@@ -17,10 +17,9 @@ public class Issue6View extends CLMaterialView implements TooltipClickListener {
     @Override
     protected void createMenuBar(HorizontalLayout menuBar) {
         CheckBox doNotListenClicks = new CheckBox("Do not listen tooltip clicks");
-        doNotListenClicks.setImmediate(true);
         doNotListenClicks.addValueChangeListener(e -> {
             MaterialColumnLayout layout = (MaterialColumnLayout) getLayout();
-            if((Boolean)e.getProperty().getValue()) {
+            if(e.getValue()) {
                 layout.removeTooltipClickListener(this);
             } else {
                 layout.addTooltipClickListener(this);
@@ -37,7 +36,7 @@ public class Issue6View extends CLMaterialView implements TooltipClickListener {
         layout.addTooltipClickListener(this);
 
         TextField field = new TextField("Text Field");
-        field.setInputPrompt("Something");
+        field.setPlaceholder("Something");
         field.setWidth("100%");
         field.setDescription(FontAwesome.QUESTION_CIRCLE.getHtml() + " This should be <b>BOLD</b>");
         layout.addComponent(field);

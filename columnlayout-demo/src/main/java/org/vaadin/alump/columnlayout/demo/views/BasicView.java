@@ -1,9 +1,7 @@
 package org.vaadin.alump.columnlayout.demo.views;
 
-import com.vaadin.data.Property;
 import com.vaadin.ui.*;
 import org.vaadin.alump.columnlayout.ColumnLayout;
-import org.vaadin.alump.columnlayout.demo.components.SmallButton;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -56,6 +54,7 @@ public class BasicView extends CLView {
         cityAndZipCode.addComponent(zipCode);
         cityAndZipCode.setExpandRatio(zipCode, 1.0f);
 
+        /*
         Button toggleTheme = new Button("Toggle theme", event -> {
             if(UI.getCurrent().getTheme().equals("demo")) {
                 UI.getCurrent().setTheme("demo2");
@@ -66,7 +65,7 @@ public class BasicView extends CLView {
             }
         });
         layout.addComponent(toggleTheme, 1);
-
+        */
 
         return layout;
     }
@@ -75,31 +74,27 @@ public class BasicView extends CLView {
     protected void createMenuBar(HorizontalLayout menuBar) {
         CheckBox spacing = new CheckBox("Spacing");
         spacing.addValueChangeListener(e ->
-                spacingHandlers.forEach(h -> h.setSpacing((Boolean) e.getProperty().getValue())));
+                spacingHandlers.forEach(h -> h.setSpacing((Boolean) e.getValue())));
         menuBar.addComponent(spacing);
 
         CheckBox margin = new CheckBox("Margin");
-        margin.addValueChangeListener(e -> getLayout().setMargin((Boolean) e.getProperty().getValue()));
+        margin.addValueChangeListener(e -> getLayout().setMargin((Boolean) e.getValue()));
         menuBar.addComponent(margin);
 
         CheckBox expand = new CheckBox("Expanding columns");
-        expand.addValueChangeListener(e -> getLayout().setExpandingColumns((Boolean) e.getProperty().getValue()));
+        expand.addValueChangeListener(e -> getLayout().setExpandingColumns((Boolean) e.getValue()));
         menuBar.addComponent(expand);
 
         ComboBox columnWidth = new ComboBox();
         columnWidth.setDescription("Column width in pixels");
         columnWidth.setTextInputAllowed(false);
-        columnWidth.setNullSelectionAllowed(false);
-        columnWidth.addItem("Default");
-        columnWidth.addItem(new Integer(100));
-        columnWidth.addItem(new Integer(200));
-        columnWidth.addItem(new Integer(400));
-        columnWidth.addItem(new Integer(800));
-        columnWidth.addItem(new Integer(1600));
+        columnWidth.setEmptySelectionAllowed(false);
+        columnWidth.setItems("Default", new Integer(100), new Integer(200), new Integer(400),
+                new Integer(800), new Integer(1600));
         columnWidth.setValue("Default");
         columnWidth.addValueChangeListener(e -> {
-            if(e.getProperty().getValue() instanceof Integer) {
-                getLayout().setColumnWidth((Integer)e.getProperty().getValue());
+            if(e.getValue() instanceof Integer) {
+                getLayout().setColumnWidth((Integer)e.getValue());
             } else {
                 getLayout().setColumnWidth(defaultColumnWidth);
             }
@@ -108,7 +103,7 @@ public class BasicView extends CLView {
 
         CheckBox outlines = new CheckBox("Show outlines");
         outlines.addValueChangeListener(e -> {
-            if((Boolean)e.getProperty().getValue()) {
+            if(e.getValue()) {
                 getLayout().addStyleName("outlined");
             } else {
                 getLayout().removeStyleName("outlined");

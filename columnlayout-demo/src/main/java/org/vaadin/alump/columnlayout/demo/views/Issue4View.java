@@ -13,9 +13,8 @@ public class Issue4View extends CLView {
     @Override
     protected void createMenuBar(HorizontalLayout menuBar) {
         CheckBox toggle = new CheckBox("This column layout should have custom spacing");
-        toggle.setImmediate(true);
         toggle.addValueChangeListener(e -> {
-            if((Boolean)e.getProperty().getValue()) {
+            if((Boolean)e.getValue()) {
                 getLayout().removeStyleName(STYLE_OFF);
                 getLayout().addStyleName(STYLE_ON);
             } else {

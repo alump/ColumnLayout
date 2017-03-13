@@ -1,6 +1,5 @@
 package org.vaadin.alump.columnlayout.notooltip;
 
-import com.vaadin.data.Property;
 import com.vaadin.ui.CheckBox;
 
 /**
@@ -18,9 +17,5 @@ public class NoTooltipCheckBox extends CheckBox {
 
     public NoTooltipCheckBox(String caption, boolean initialState) {
         super(caption, initialState);
-    }
-
-    public NoTooltipCheckBox(String caption, Property<?> dataSource) {
-        super(caption, dataSource);
     }
 }
